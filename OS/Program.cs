@@ -1,31 +1,28 @@
 ﻿using System;
+using System.IO;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 
 namespace OS
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
+{ 
+
+    class Praktika_3
+    { 
+        public static void Function()
+        { 
+            int a=0, b=3, c=3
+            for ( int i=0; i<noIterations; i++ )
+                a += b*2 + c - i;
+            Console.WriteLine("Hello, World!");
         }
 
-
-        static void Show_Menu()
+        void main()
         {
-            Console.WriteLine("1. Praktika 1\n2. Praktika 2");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            switch(choice)
-            {
-                case 1:
-                    Praktika_1.Start();
-                    break;
-                case 2:
-                    Praktika_2.Start();
-                    break;
-            }
+
 
         }
-
+    
     }
-}
