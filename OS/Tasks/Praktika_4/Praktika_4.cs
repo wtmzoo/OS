@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace OS
 {
-    class Praktika_4
+    public class Praktika_4
     {
         public static void Start()
         {

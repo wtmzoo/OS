@@ -24,11 +24,11 @@ namespace OS
         public static void Start()
         {
             //string main_dir = "C://";
-            string main_dir = @"D:\Documents\";
+            //string main_dir = @"D:\Documents\";
 
             // JSON
-            string FirstName = "";
-            string LastName = "";
+            //string FirstName = "";
+            //string LastName = "";
 
             Console.WriteLine("Path to work: ");
             string path = Console.ReadLine();

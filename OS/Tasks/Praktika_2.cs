@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace OS
 {
-    class Praktika_2
+    public class Praktika_2
     {
         public static void Start()
         {
@@ -76,7 +76,7 @@ namespace OS
         }
 
 
-        static void Overhelming(char[] letters, string hash)
+        public static void Overhelming(char[] letters, string hash)
         {
             int StartTime = Environment.TickCount;
 
