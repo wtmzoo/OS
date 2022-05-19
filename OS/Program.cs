@@ -38,7 +38,8 @@ namespace OS
                         break;
                     case 5:
                         Console.WriteLine("\nPraktika_5 Running...\n");
-                        Praktika_5.Start();
+                        Praktika_5 ob = new Praktika_5();
+                        ob.Start();
                         break;
                     case 6:
                         Console.WriteLine("\nPraktika_6 Running...\n");
