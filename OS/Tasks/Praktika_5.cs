@@ -80,8 +80,14 @@ namespace OS
                     wait_k.Start();
 
                     flag = true;
-                    while (flag)
+                    while (true)
                     {
+                        if (flag == false)
+                        {
+                            queue.Enqueue(first_thread);
+                            break;
+                        }
+
                         if (first_thread.IsAlive == false)
                         {
                             flag = false;
@@ -138,7 +144,7 @@ namespace OS
             {
                 Thread.Sleep(100);
                 if (wait_key_flag != true) break;
-                if (Console.ReadKey().Key == ConsoleKey.Q && wait_key_flag)
+                if (Console.ReadKey(true).Key == ConsoleKey.Q && wait_key_flag)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("The current thread has been stopped");
