@@ -8,7 +8,6 @@ namespace OS
 { 
     public class Praktika_5
     {
-        static Semaphore sem = new Semaphore(3, 3);
         int count = 3;
 
         bool[] glob_flag = { false, false, false };
@@ -24,12 +23,14 @@ namespace OS
 
         public void Start()
         {
-
-            Console.WriteLine("\nTask Scheduler is running");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nTask Scheduler is running\n");
+            Console.ResetColor();
 
             Queue<Thread> queue = new Queue<Thread>();
 
             //  Init of threads queue ----
+            Console.WriteLine("--------------------");
             Console.WriteLine("Adding Thread 1...");
             Thread mod_1 = new Thread(module_1);
             mod_1.Name = $"Thread 1";
@@ -46,13 +47,11 @@ namespace OS
             Thread mod_3 = new Thread(module_3);
             mod_3.Name = $"Thread 3";
             queue.Enqueue(mod_3);
+            Console.WriteLine("--------------------");
             Thread.Sleep(1000);
             //  --------------------------
 
-            
-            //Console.ReadKey();
 
-            
             while (true)
             {
                 glob_flag[threads_counter] = false;
@@ -92,13 +91,11 @@ namespace OS
                         {
                             flag = false;
                             glob_flag[threads_counter] = false;
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("The current thread has completed work");
-                            Console.ResetColor();
                             wait_key_flag = false;
                             break;
                         }
-                        if ((float)DateTime.Now.Subtract(Start).TotalSeconds >= 6)
+
+                        if ((float)DateTime.Now.Subtract(Start).TotalSeconds >= 6 && (glob_isAlive[threads_counter] != false))
                         {
                             flag = false;
                             glob_flag[threads_counter] = true;
@@ -147,14 +144,13 @@ namespace OS
                 if (Console.ReadKey(true).Key == ConsoleKey.Q && wait_key_flag)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("The current thread has been stopped");
+                    Console.WriteLine("The current thread has been stopped\n");
                     Console.ResetColor();
                     flag = false;
                     glob_flag[threads_counter] = true;
                     break;
                 }
             }
-
         }
 
 
@@ -162,27 +158,27 @@ namespace OS
 
         public void module_1()
         {
-            sem.WaitOne();  // ожидаем, когда освободится место
-
 
             Console.WriteLine($"\n{Thread.CurrentThread.Name} is running");
 
-            for (int item = 0; item < 14; item++)
+            for (int item = 0; item < 5; item++)
             {
                 while (glob_flag[0] == true)
                 {
                     Thread.Sleep(100);
                 }
 
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine("Thread 1 is working");
+                Console.ResetColor();
                 Thread.Sleep(1000);
 
             }
-
-            Console.WriteLine($"{Thread.CurrentThread.Name} out");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{Thread.CurrentThread.Name} has completed work");
+            Console.ResetColor();
             glob_isAlive[0] = false;
 
-            sem.Release();  // освобождаем место
 
             count--;
             Thread.Sleep(1000);
@@ -192,27 +188,27 @@ namespace OS
         public void module_2()
         {
 
-            sem.WaitOne();  // ожидаем, когда освободится место
-
-
             Console.WriteLine($"\n{Thread.CurrentThread.Name} is running");
 
-            for (int item = 0; item < 4; item++)
+            for (int item = 0; item < 14; item++)
             {
                 while (glob_flag[1] == true)
                 {
                     Thread.Sleep(100);
                 }
 
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine("Thread 2 is working");
+                Console.ResetColor();
                 Thread.Sleep(1000);
 
             }
 
-            Console.WriteLine($"{Thread.CurrentThread.Name} out");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{Thread.CurrentThread.Name} has completed work");
+            Console.ResetColor();
             glob_isAlive[1] = false;
 
-            sem.Release();  // освобождаем место
 
             count--;
             Thread.Sleep(1000);
@@ -222,27 +218,26 @@ namespace OS
         public void module_3()
         {
 
-            sem.WaitOne();  // ожидаем, когда освободится место
-
-
             Console.WriteLine($"\n{Thread.CurrentThread.Name} is running");
 
-            for (int item = 0; item < 4; item++)
+            for (int item = 0; item < 9; item++)
             {
                 while (glob_flag[2] == true)
                 {
                     Thread.Sleep(100);
                 }
 
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine("Thread 3 is working");
+                Console.ResetColor();
                 Thread.Sleep(1000);
 
             }
 
-            Console.WriteLine($"{Thread.CurrentThread.Name} out");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"{Thread.CurrentThread.Name} has completed work");
+            Console.ResetColor();
             glob_isAlive[2] = false;
-
-            sem.Release();  // освобождаем место
 
             count--;
             Thread.Sleep(1000);

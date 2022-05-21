@@ -89,8 +89,8 @@ namespace OS
             bool tumbler = true;
             while (tumbler)
             {
-                Console.WriteLine("\n0. Выйти из программы.");
-                Console.WriteLine("\n1. Запустить задание.");
+                Console.WriteLine("0. Выйти из программы.");
+                Console.WriteLine("1. Запустить задание.");
 
                 int num = int.Parse(Console.ReadLine());
                 switch (num)
