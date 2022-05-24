@@ -101,9 +101,9 @@ namespace OS
                             glob_flag[threads_counter] = true;
                             queue.Enqueue(first_thread);
                             Console.ForegroundColor = ConsoleColor.Red;
+                            wait_key_flag = false;
                             Console.WriteLine("The current thread has been running longer than it should. It was stopped");
                             Console.ResetColor();
-                            wait_key_flag = false;
                             break;
                         }
                     }
