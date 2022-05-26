@@ -45,7 +45,8 @@ namespace OS
                             break;
                         case 6:
                             Console.WriteLine("\nPraktika_6 Running...\n");
-                            Console.WriteLine("In progress\n");
+                            Praktika_6 pr6 = new Praktika_6();
+                            pr6.Start();
                             break;
                         case 7:
                             Console.Clear();
