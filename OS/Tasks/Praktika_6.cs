@@ -48,6 +48,14 @@ namespace OS
             Thread wait_k2 = new Thread(wait_info_key);
             wait_k2.Start();
 
+            add_task();
+
+
+            while (true)
+            {
+                Thread.Sleep(100);
+            }
+
         }
 
 
@@ -66,17 +74,27 @@ namespace OS
                 }
                 else
                 {
-                    queue.Enqueue(task_mem_current);
-                    Thread thread = new Thread(() => load_task_to_mem(queue.Dequeue()));
-                    //Thread new_thread = new Thread(load_task_to_mem);
-                    thread.Start();
+                    int first_task = queue.Dequeue();
+                    Thread thread = new Thread(() => load_task_to_mem(first_task));
+                    while (true)
+                    {
+                        if (mem_size - mem_fullness >= first_task)
+                        {
+                            thread.Start();
+                            break;
+                        }
+                        else
+                        {
+                            queue.Enqueue(task_mem_current);
+                        }
+                    }
                 }
             }
             else
             {
                 // Добавить таск в очередь
                 queue.Enqueue(task_mem_current);
-                Console.WriteLine("It is not possible to allocate the right amount of memory. Task is placed in a queue. Size: {0}", task_mem_current);
+                Console.WriteLine("It is not possible to allocate the right amount of memory. Task is placed in a queue. Task Size: {0}", task_mem_current);
             }
             
         }
@@ -90,7 +108,9 @@ namespace OS
             //Thread.Sleep( (int)glob_task_mem_current / 5 );
             Thread.Sleep(5000);
             mem_fullness -= task_mem_current;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("The memory has been freed up by {0} bytes", task_mem_current);
+            Console.ResetColor();
         }
 
 
